@@ -23,11 +23,6 @@ const useAxiosGet = (url, timeout) => {
         setError(true);
         setErrorMessage(e.message);
         setLoading(false);
-        if (api.isCancel(e)) {
-          console.log(`request cancelled:${e.message}`);
-        } else {
-          console.log("another error happened:" + e.message);
-        }
       }
     };
 
