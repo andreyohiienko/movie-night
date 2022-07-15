@@ -1,5 +1,5 @@
 import { getImageUrl } from "../utils";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useAxiosGet, useLocalStorage } from "../hooks";
 import Icon from "../icon";
 
@@ -23,10 +23,28 @@ const Home = () => {
         <h1 className="mb-6">Movie Night</h1>
         <ul className="list-none pl-0 flex">
           <li>
-            <Link to="/">Home</Link>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? "bg-green-500 hover:bg-green-600  active:bg-green-700 px-5 py-2 text-sm leading-5 rounded-full text-white"
+                  : ""
+              }
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <Link to="/liked">Liked</Link>
+            <NavLink
+              to="/liked"
+              className={({ isActive }) =>
+                isActive
+                  ? "bg-green-500 hover:bg-green-600  active:bg-green-700 px-5 py-2 text-sm leading-5 rounded-full text-white"
+                  : ""
+              }
+            >
+              Liked
+            </NavLink>
           </li>
         </ul>
         {loading ? <Icon type="spinner" /> : null}
