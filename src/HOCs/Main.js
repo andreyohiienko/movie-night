@@ -4,8 +4,7 @@ const Main = () => {
   return (
     <div className="mx-auto container px-4">
       <div className="prose max-w-none text-center">
-        <h1 className="mb-6">Movie Night</h1>
-        <ul className="list-none pl-0 flex">
+        <ul className="list-none pl-0 flex mt-4">
           <li>
             <NavLink
               to="/"

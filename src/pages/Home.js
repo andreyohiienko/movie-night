@@ -18,6 +18,7 @@ const Home = () => {
 
   return (
     <>
+      <h1 className="mb-6">Movie Night</h1>
       {loading ? <Icon type="spinner" /> : null}
       {data?.results.length ? (
         <div className="grid grid-cols-4 gap-4">
