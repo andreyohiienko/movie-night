@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "api";
 
-const useAxiosGet = (url, timeout) => {
+const useAxiosGet = (url) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -14,7 +14,6 @@ const useAxiosGet = (url, timeout) => {
       try {
         const res = await api.get(url, {
           signal: controller.signal,
-          timeout: timeout,
         });
 
         setData(res.data);
@@ -31,7 +30,7 @@ const useAxiosGet = (url, timeout) => {
     return () => {
       controller.abort();
     };
-  }, [url, timeout]);
+  }, [url]);
 
   return { data, loading, error, errorMessage };
 };
