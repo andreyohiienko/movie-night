@@ -1,41 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { api } from "api";
+import { useQuery } from "react-query";
 
-const useAxiosGet = (url) => {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    const fetchData = async () => {
-      try {
-        const res = await api.get(url, {
-          signal: controller.signal,
-        });
-
-        setData(res.data);
-        setLoading(false);
-      } catch (e) {
-        setError(true);
-        setErrorMessage(e.message);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-
-    return () => {
-      controller.abort();
-    };
-  }, [url]);
-
-  return { data, loading, error, errorMessage };
-};
-
-const useLocalStorage = (key, initialValue) => {
+export const useLocalStorage = (key, initialValue) => {
   const [storedValue, setStoredValue] = useState(() => {
     if (typeof window === "undefined") {
       return initialValue;
@@ -63,4 +30,13 @@ const useLocalStorage = (key, initialValue) => {
   return [storedValue, setValue];
 };
 
-export { useAxiosGet, useLocalStorage };
+export const useMovies = () => {
+  return useQuery(
+    ["movies"],
+    async () => {
+      const { data } = await api.get("/movie/popular");
+      return data.results;
+    },
+    { staleTime: Infinity },
+  );
+};

@@ -1,5 +1,7 @@
 # Fineao take-home test
 
+Published to https://absurd-giraffe.surge.sh
+
 Starting with this endpoint:
 
 https://developers.themoviedb.org/3/movies/get-popular-movies
