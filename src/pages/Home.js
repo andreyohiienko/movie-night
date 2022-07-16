@@ -1,10 +1,10 @@
-import { useAxiosGet, useLocalStorage } from "hooks";
+import { useLocalStorage, useMovies } from "hooks";
 import Icon from "icon";
 import { MovieCard } from "components/MovieCard";
 
 const Home = () => {
   const [liked, setLiked] = useLocalStorage("liked", []);
-  const { data, loading } = useAxiosGet("/movie/popular");
+  const { data, isFetching, error } = useMovies();
 
   const likedIds = liked?.map((movie) => movie.id);
 
@@ -19,10 +19,10 @@ const Home = () => {
   return (
     <>
       <h1 className="mb-6">Movie Night</h1>
-      {loading ? <Icon type="spinner" /> : null}
-      {data?.results.length ? (
+      {isFetching ? <Icon type="spinner" /> : null}
+      {data?.length ? (
         <div className="grid grid-cols-4 gap-4">
-          {data.results.map((movie) => (
+          {data.map((movie) => (
             <MovieCard
               key={movie.id}
               {...movie}
@@ -32,6 +32,7 @@ const Home = () => {
           ))}
         </div>
       ) : null}
+      {error ? <p className="text-red-500">{error.message}</p> : null}
     </>
   );
 };
