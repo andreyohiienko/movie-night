@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Main from "./HOCs/Main";
-import Home from "./pages/Home";
-import Liked from "./pages/Liked";
+import Main from "HOCs/Main";
+import Home from "pages/Home";
+import Liked from "pages/Liked";
 
 export default function App() {
   return (

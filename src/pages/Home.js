@@ -1,6 +1,6 @@
-import { getImageUrl } from "../utils";
-import { useAxiosGet, useLocalStorage } from "../hooks";
-import Icon from "../icon";
+import { getImageUrl } from "utils";
+import { useAxiosGet, useLocalStorage } from "hooks";
+import Icon from "icon";
 
 const Home = () => {
   const [likeds, setLikeds] = useLocalStorage("likeds", []);

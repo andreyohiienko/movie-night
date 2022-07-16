@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { api } from "./api";
+import { api } from "api";
 
 const useAxiosGet = (url, timeout) => {
   const [data, setData] = useState(null);

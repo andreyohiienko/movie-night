@@ -1,6 +1,6 @@
-import { useLocalStorage } from "../hooks";
-import Icon from "../icon";
-import { getImageUrl } from "../utils";
+import { useLocalStorage } from "hooks";
+import Icon from "icon";
+import { getImageUrl } from "utils";
 
 const Liked = () => {
   const [liked, setLiked] = useLocalStorage("likeds");
