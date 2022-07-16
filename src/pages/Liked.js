@@ -2,7 +2,7 @@ import { MovieCard } from "components/MovieCard";
 import { useLocalStorage } from "hooks";
 
 const Liked = () => {
-  const [liked, setLiked] = useLocalStorage("liked");
+  const [liked, setLiked] = useLocalStorage("liked", []);
 
   const onLike = (movie) => {
     setLiked((prev) => prev.filter((m) => m.id !== movie.id));
