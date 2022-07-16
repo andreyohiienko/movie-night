@@ -1,38 +1,36 @@
 import { useState, useEffect } from "react";
 import { api } from "api";
+import { useAppState } from "context";
 
 const useAxiosGet = (url) => {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [state, dispatch] = useAppState();
+  const { called } = state.movies;
 
   useEffect(() => {
     const controller = new AbortController();
 
     const fetchData = async () => {
+      dispatch({ type: "LOADING" });
       try {
-        const res = await api.get(url, {
+        const { data } = await api.get(url, {
           signal: controller.signal,
         });
-
-        setData(res.data);
-        setLoading(false);
+        dispatch({ type: "ADD_MOVIES", payload: data.results });
       } catch (e) {
-        setError(true);
-        setErrorMessage(e.message);
-        setLoading(false);
+        dispatch({ type: "ADD_ERROR", payload: e.message });
       }
     };
 
-    fetchData();
+    if (!called) {
+      fetchData();
+    }
 
     return () => {
       controller.abort();
     };
-  }, [url]);
+  }, [url, dispatch, called]);
 
-  return { data, loading, error, errorMessage };
+  return state.movies;
 };
 
 const useLocalStorage = (key, initialValue) => {
