@@ -22,7 +22,9 @@ const Liked = () => {
             />
           ))}
         </div>
-      ) : null}
+      ) : (
+        <div className="text-center">No liked movies here!</div>
+      )}
     </>
   );
 };
