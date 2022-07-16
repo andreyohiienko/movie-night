@@ -3,13 +3,13 @@ import Icon from "icon";
 import { MovieCard } from "components/MovieCard";
 
 const Home = () => {
-  const [likeds, setLikeds] = useLocalStorage("liked", []);
+  const [liked, setLiked] = useLocalStorage("liked", []);
   const { data, loading } = useAxiosGet("/movie/popular");
 
-  const likedIds = likeds?.map((movie) => movie.id);
+  const likedIds = liked?.map((movie) => movie.id);
 
   const onLike = (movie) => {
-    setLikeds((prev) =>
+    setLiked((prev) =>
       likedIds.includes(movie.id)
         ? prev.filter((m) => m.id !== movie.id)
         : [...prev, movie],
