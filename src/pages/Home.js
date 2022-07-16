@@ -3,7 +3,7 @@ import Icon from "icon";
 import { MovieCard } from "components/MovieCard";
 
 const Home = () => {
-  const [likeds, setLikeds] = useLocalStorage("likeds", []);
+  const [likeds, setLikeds] = useLocalStorage("liked", []);
   const { data, loading } = useAxiosGet("/movie/popular");
 
   const likedIds = likeds?.map((movie) => movie.id);
