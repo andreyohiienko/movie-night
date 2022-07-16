@@ -7,14 +7,14 @@ export const MovieCard = (props) => {
   return (
     <div key={id}>
       <div className="relative">
-        <img className="m-0" src={getImageUrl(posterPath)} alt={title} />
+        <img className="m-0 w-full" src={getImageUrl(posterPath)} alt={title} />
         <Icon
           onClick={() => onLike(rest)}
           className="absolute bottom-2 right-2 z-10 cursor-pointer"
           type={type}
         />
       </div>
-      <h3>{title}</h3>
+      <h4>{title}</h4>
     </div>
   );
 };

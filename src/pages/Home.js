@@ -21,7 +21,7 @@ const Home = () => {
       <h1 className="mb-6">Movie Night</h1>
       {isFetching ? <Icon type="spinner" /> : null}
       {data?.length ? (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {data.map((movie) => (
             <MovieCard
               key={movie.id}
