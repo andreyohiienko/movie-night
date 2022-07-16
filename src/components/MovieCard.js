@@ -2,8 +2,8 @@ import Icon from "icon";
 import { getImageUrl } from "utils";
 
 export const MovieCard = (props) => {
-  const { id, title, poster_path: posterPath, ...rest } = props;
-  const { onLike, type } = rest;
+  const { onLike, type, ...rest } = props;
+  const { id, title, poster_path: posterPath } = rest;
   return (
     <div key={id}>
       <div className="relative">
