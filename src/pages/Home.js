@@ -1,6 +1,6 @@
-import { getImageUrl } from "utils";
 import { useAxiosGet, useLocalStorage } from "hooks";
 import Icon from "icon";
+import { MovieCard } from "components/MovieCard";
 
 const Home = () => {
   const [likeds, setLikeds] = useLocalStorage("likeds", []);
@@ -22,26 +22,14 @@ const Home = () => {
       {loading ? <Icon type="spinner" /> : null}
       {data?.results.length ? (
         <div className="grid grid-cols-4 gap-4">
-          {data.results.map((movie) => {
-            const { id, title, poster_path: posterPath } = movie;
-            return (
-              <div key={id}>
-                <div className="relative">
-                  <img
-                    className="m-0"
-                    src={getImageUrl(posterPath)}
-                    alt={title}
-                  />
-                  <Icon
-                    onClick={() => onLike(movie)}
-                    className="absolute bottom-2 right-2 z-10 cursor-pointer"
-                    type={likedIds.includes(id) ? "liked" : "unliked"}
-                  />
-                </div>
-                <h3>{title}</h3>
-              </div>
-            );
-          })}
+          {data.results.map((movie) => (
+            <MovieCard
+              key={movie.id}
+              {...movie}
+              onLike={onLike}
+              type={likedIds.includes(movie.id) ? "liked" : "unliked"}
+            />
+          ))}
         </div>
       ) : null}
     </>
